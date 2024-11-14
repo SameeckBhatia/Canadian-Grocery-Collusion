@@ -1,0 +1,108 @@
+User
+Write 8 tests for the following data:
+#### Preamble ####
+# Purpose: Simulates a mock dataset of grocery stores and food prices.
+# Author: Sameeck Bhatia, Sean Chua, Cristina Su Lam, Mariko Lee, Karen Riani
+# Date: 14 November 2024
+# Contact: sameeck.bhatia@mail.utoronto.ca
+# License: MIT
+# Pre-requisites: 
+#   - The tidyverse package must be installed and loaded
+# Any other information needed? None
+
+### Workspace Setup ###
+library(tidyverse)
+
+### Simulation  ###
+set.seed(12)
+
+n <- 100
+
+date <- sample(seq(as.Date("2024-01-01"), as.Date("2024-11-13"), 1), n, replace = TRUE)
+vendor <- sample(c("Loblaws", "Walmart", "T&T", "Sobeys"), n, replace = TRUE)
+product <- sample(c("Apple", "Watermelon", "Celery", "Tomato"))
+current_price <-  3 + abs(round(rnorm(n, 0, 2), 1)) - 0.01
+previous_price <- 3 + abs(round(rnorm(n, 0, 2), 1)) - 0.01
+transaction_type <- sample(c("Sale", "Promotion", "Rewards Points"), n, replace = TRUE)
+
+simulated_data <- data.frame(
+  date = date,
+  vendor = vendor,
+  product = product,
+  current_price = current_price,
+  previous_price = previous_price,
+  transaction_type = transaction_type
+)
+
+### Exporting Data  ###
+write_csv(simulated_data, "data/simulated_data/simulated_data.csv")
+
+ChatGPT
+To test this simulated dataset, you can create tests that ensure data quality, logical consistency, and expected value ranges. Here are eight possible tests:
+
+Test Date Range: Check that all dates fall within the range specified for simulation (2024-01-01 to 2024-11-13).
+
+Test Vendor Values: Ensure that the vendor column only contains values from the specified list: Loblaws, Walmart, T&T, and Sobeys.
+
+Test Product Values: Verify that the product column only contains values from the specified list: Apple, Watermelon, Celery, and Tomato.
+
+Test Transaction Type Values: Confirm that the transaction_type column only contains values from the specified list: Sale, Promotion, and Rewards Points.
+
+Test Non-negative Prices: Since prices are generated as absolute values around 3, check that all values in current_price and previous_price columns are non-negative.
+
+Test Price Difference: Confirm that there are no cases where current_price is significantly greater than previous_price to avoid unrealistic pricing. You might set a threshold difference, like current_price <= previous_price + 10.
+
+Test for Missing Values: Ensure there are no NA values in any column of simulated_data.
+
+Test Consistency of Row Count: Check that the simulated_data dataframe has exactly n rows (100 in this case).
+
+Implementing Tests in R
+Here’s how you can implement these tests in R:
+
+r
+Copy code
+# Load necessary library
+library(testthat)
+
+# Test 1: Date Range
+test_that("All dates are within the specified range", {
+  expect_true(all(simulated_data$date >= as.Date("2024-01-01") &
+                  simulated_data$date <= as.Date("2024-11-13")))
+})
+
+# Test 2: Vendor Values
+test_that("Vendor values are limited to specified options", {
+  expect_true(all(simulated_data$vendor %in% c("Loblaws", "Walmart", "T&T", "Sobeys")))
+})
+
+# Test 3: Product Values
+test_that("Product values are limited to specified options", {
+  expect_true(all(simulated_data$product %in% c("Apple", "Watermelon", "Celery", "Tomato")))
+})
+
+# Test 4: Transaction Type Values
+test_that("Transaction type values are limited to specified options", {
+  expect_true(all(simulated_data$transaction_type %in% c("Sale", "Promotion", "Rewards Points")))
+})
+
+# Test 5: Non-negative Prices
+test_that("Current and previous prices are non-negative", {
+  expect_true(all(simulated_data$current_price >= 0))
+  expect_true(all(simulated_data$previous_price >= 0))
+})
+
+# Test 6: Price Difference Threshold
+test_that("Current price is not unrealistically higher than previous price", {
+  expect_true(all(simulated_data$current_price <= simulated_data$previous_price + 10))
+})
+
+# Test 7: No Missing Values
+test_that("No missing values in any column", {
+  expect_true(all(complete.cases(simulated_data)))
+})
+
+# Test 8: Row Count Consistency
+test_that("The dataset contains exactly n rows", {
+  expect_equal(nrow(simulated_data), n)
+})
+These tests can be run in R, and they will report any inconsistencies in the data, ensuring that the generated dataset meets the expected structure and constraints.
