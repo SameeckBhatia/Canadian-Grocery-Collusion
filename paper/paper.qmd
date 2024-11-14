@@ -51,4 +51,17 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentu
 
 \newpage
 
+# Discussion
+
+## Correlation vs Causation
+When analyzing price trends over time, it is essential to distinguish between correlation and causation. For example, there may be a correlation between price changes and time periods, but one may not necessarily directly cause the other. For instance, if prices tend to decrease during certain months, we might be tempted to conclude that seasonal promotions are the cause. However, other factors and confounding variables could be responsible such as market demand or lowering competitor prices.
+
+## Missing Data
+Missing data can significantly impact the analysis of price trends. If certain products or vendors have incomplete records for specific time periods, this could lead to inaccurate results. For instance, if there exists missing price data for particular products for some time period, it may distort or skew the average price calculations and misrepresent overall trends. To address this, some imputation techniques might need to be implemented and assess how such methods affect overall analysis.
+
+## Sources of Bias
+Bias can arise from various sources throughout the data collection and analysis process, potentially distorting findings. For example, since the dataset only contains 7 vendors, prices within the data may not represent overall market behavior accurately. Moreover, there may be bias in the time periods when data is collected. For example, certain periods might be over-represented, such as the holiday season while others might be underrepresented. This can lead to misleading conclusions about the overall analysis.
+
+\newpage
+
 # References
