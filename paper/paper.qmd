@@ -1,6 +1,6 @@
 ---
-title: "Canadian Grocery Collusion"
-subtitle: "Some Subtitle"
+title: "The Impact of Collusion and Promotions on Canadian Grocery Prices"
+subtitle: "Analyzing Price Trends and the Role of Promotions in Groceries"
 author:
   - Sameeck Bhatia
   - Sean Chua
@@ -10,7 +10,7 @@ author:
 thanks: "Code and data are available at: [https://github.com/SameeckBhatia/Canadian-Grocery-Collusion](https://github.com/SameeckBhatia/Canadian-Grocery-Collusion)."
 date: today
 date-format: long
-abstract: "Line 1. Line 2. Line 3. Line 4"
+abstract: "This study examines the pricing patterns in the Canadian grocery market, particularly focusing on the impact of promotions and price variations. Our findings indicate that non-promotional prices have slightly decreased over a nine-month period. This suggests that market competition might not be functioning optimally, raising concerns about anti-competitive behaviors in the sector. These insights are crucial for understanding the broader implications of pricing dynamics and the potential for market manipulation."
 format: pdf
 toc: true
 number-sections: true
@@ -23,35 +23,65 @@ bibliography: references.bib
 #| include: false
 #| warning: false
 #| message: false
+#| echo: false
 
 library(tidyverse)
 ```
 
 # Introduction
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum at velit at bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus a fermentum est, in tempus risus. Donec eu risus massa. Phasellus sollicitudin lorem id consequat tincidunt. Pellentesque id quam a sapien convallis commodo. Pellentesque vitae velit eu nisi dictum tempor ac consectetur lorem. Integer laoreet bibendum rutrum. Vestibulum sed nulla ut sapien dapibus venenatis. Praesent eget porttitor sapien, vel bibendum nisl. Suspendisse tempus arcu sed enim varius porttitor. Duis rutrum ipsum eget eros aliquam, vel facilisis arcu pulvinar. Aenean semper ante magna, eleifend maximus massa tempor vitae. Etiam imperdiet arcu sed mauris consequat ullamcorper. Phasellus id risus auctor eros iaculis maximus at sed lacus. Aenean orci nulla, dictum sagittis odio sit amet, viverra laoreet elit. Nam accumsan metus eget dolor fringilla porttitor. Etiam consequat blandit erat sed luctus. Sed eget quam erat. Aenean et purus non lacus egestas egestas. Ut et nibh at sem tempus dignissim. In eget placerat ipsum. Ut nec tellus metus. In hac habitasse platea dictumst. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec rhoncus, arcu in pretium tempus, sapien ante congue urna, ut varius libero velit.
+The Canadian grocery market has experienced significant price rises in recent years, particularly following the COVID-19 pandemic, with inflation serving as a major driving force behind these increases. The structure of Canadian government policies has created an environment that may support collusion and price fixing among major market players. This anti-competitive behavior is not unique to groceries and is similarly observed across other essential sectors, where oligopolistic market structures exist. This analysis examines the impact and patterns of grocery promotions and their relationship to price variations over time. Notably, our findings reveal a modest decrease in non-promotional prices, averaging approximately $1 over a nine-month period. This trend raises important questions about the effectiveness of market competition and the real impact of promotional activities. We present information on the data and its measurement in @sec-data, show the results from analysis in @sec-results, and finally discuss the difference between correlation and causation, effects of missing data, and possible sources of bias in @sec-discussion.
 
 # Data {#sec-data}
 
 ## Overview
 
-Lorem ipsum dolor sit amet, [@Hammer] consectetur adipiscing elit. Pellentesque condimentum at velit at bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus a fermentum est, in tempus risus [@SQLite]. Donec eu risus massa. Phasellus sollicitudin lorem id consequat tincidunt. Pellentesque id quam a sapien convallis commodo. Pellentesque vitae velit eu nisi dictum tempor ac consectetur lorem. Integer laoreet bibendum rutrum. Vestibulum sed nulla ut sapien dapibus venenatis. Praesent eget porttitor sapien, vel bibendum nisl [@citeR]. Suspendisse tempus arcu sed enim varius porttitor. Duis rutrum ipsum eget eros aliquam, vel facilisis arcu pulvinar. 
+The dataset from Project Hammer, compiled by @Hammer, provides a comprehensive comparison of grocery prices across 8 different vendors in Canada. The data is structured within a @SQLite database containing two main tables: a `raw` table storing the original collected price data, and a `product` table that contains standardized product information and classifications. This database structure allows for efficient querying and analysis of price variations across different vendors, allowing for the identification of pricing patterns and potential market dynamics in the Canadian grocery sector. The data has been cleaned through @SQLite, while @citeR and @tidyverse have been used to create visualizations and filter the data.
 
 # Measurement
 
-Aenean semper ante magna, eleifend maximus massa tempor vitae. Etiam imperdiet arcu sed mauris consequat ullamcorper. Phasellus id risus auctor eros iaculis maximus at sed lacus. Aenean orci nulla, dictum sagittis odio sit amet, viverra laoreet elit. Nam accumsan metus eget dolor fringilla porttitor. Etiam consequat blandit erat sed luctus. Sed eget quam erat. Aenean et purus non lacus egestas egestas. Ut et nibh at sem tempus dignissim. In eget placerat ipsum. Ut nec tellus metus. In hac habitasse platea dictumst. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec rhoncus, arcu in pretium tempus, sapien ante congue urna, ut varius libero velit.
+The data measurement approach for Project Hammer focuses on systematic price collection from major Canadian grocery retailers' platforms. The database is formatted to allow for both academic analysis and potential legal action. To ensure accessibility for stakeholders, the dataset is accompanied by documentation and basic analytical tools, allowing changemakers to effectively utilize the price information for investigating potential anti-competitive practices in the Canadian grocery sector.
 
-# Outcome Variables
+# Results {#sec-results}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum at velit at bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus a fermentum est, in tempus risus. Donec eu risus massa. Phasellus sollicitudin lorem id consequat tincidunt. Pellentesque id quam a sapien convallis commodo. Pellentesque vitae velit eu nisi dictum tempor ac consectetur lorem. Integer laoreet bibendum rutrum.
+```{r, echo = F}
+data <- read_csv("../data/analysis_data/cleaned_data.csv",
+                 show_col_types = F)
+```
 
-# Predictor Variables
+```{r fig-line, echo = F, fig.width=8, fig.height=6, fig.align='center', fig.cap='Old and Current Prices Move in Unison, Displaying a Noticeable Difference'}
+data |>
+  rename("Avg Current Price" = AVG_CURRENT_PRICE,
+         "Avg Old Price" = AVG_OLD_PRICE) |>
+  pivot_longer(cols = c(`Avg Old Price`, `Avg Current Price`),
+               names_to = "Price_Type",
+               values_to = "Price") |>
+  ggplot(aes(x = DATE, y = Price, color = Price_Type)) +
+  geom_line() +
+  scale_color_manual(values = c("red3", "green3")) +
+  scale_x_continuous(breaks = seq(as.Date("2024-01-01"), as.Date("2024-11-13"), 30)) +
+  theme(legend.position = "top") +
+  labs(x = "Date", y = "Average Price", color = NULL)
+```
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum at velit at bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus a fermentum est, in tempus risus. Donec eu risus massa. Phasellus sollicitudin lorem id consequat tincidunt. Pellentesque id quam a sapien convallis commodo. Pellentesque vitae velit eu nisi dictum tempor ac consectetur lorem. Integer laoreet bibendum rutrum.
+@fig-line compares the average current price (shown in red) against the average old price (shown in green) over a six-month period from April to October 2024. Both price lines follow remarkably similar patterns, including notable spikes in early May and late June. Overall, there appears to be a gradual downward trend in both prices from September through October 2024, with both lines ending at their lowest points in the observed period. The most dramatic price movement occurred in early May, where both metrics experienced a sharp spike followed by an equally sharp decline.
 
 \newpage
 
-# Discussion
+```{r fig-area, echo = F, fig.width=8, fig.height=6, fig.align='center', fig.cap='Price Difference Not Uniform Over Time'}
+data |>
+  mutate(diff = AVG_CURRENT_PRICE - AVG_OLD_PRICE) |>
+  ggplot(aes(x = DATE, y = diff)) +
+  geom_area(fill = 'red3', alpha = 0.7) +
+  scale_x_continuous(breaks = seq(as.Date("2024-01-01"), as.Date("2024-11-13"), 30)) +
+  labs(x = "Date", y = "Difference in Current vs Old Price")
+```
+
+@fig-area shows the difference between current and old prices over time, with negative values indicating that current prices are generally lower than old prices across the time period. The red shaded area illustrates that the price difference fluctuates and sometimes dips significantly, especially in May and in a few spots afterward, indicating periods where prices dropped more sharply. The overall trend appears fairly stable, with most fluctuations staying within a -1 to -1.5 range, suggesting consistent pricing with occasional promotions or markdowns that temporarily lower the current price relative to the old price.
+
+\newpage
+
+# Discussion {#sec-discussion}
 
 ## Correlation vs Causation
 When analyzing price trends over time, it is essential to distinguish between correlation and causation. For example, there may be a correlation between price changes and time periods, but one may not necessarily directly cause the other. For instance, if prices tend to decrease during certain months, we might be tempted to conclude that seasonal promotions are the cause. However, other factors and confounding variables could be responsible such as market demand or lowering competitor prices.
