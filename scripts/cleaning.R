@@ -10,14 +10,18 @@
 #   - The `RSQLite` package must be installed and loaded
 # Any other information needed? None
 
+# Importing required libraries
 library(sqldf)
 library(tidyverse)
 library(RSQLite)
 
+# Connecting with the database
 con <- dbConnect(SQLite(), "data/raw_data/raw_data.sqlite")
 
+# Reading the raw data
 RAW <- dbGetQuery(con, "SELECT * FROM RAW")
 
+# Cleaning the data with a SQL query
 cleaned_data <- sqldf("
   SELECT DATE(NOWTIME) AS DATE,
          OTHER, 
@@ -31,6 +35,7 @@ cleaned_data <- sqldf("
      AND OTHER IS NOT NULL
 ")
 
+# Disconnecting from the database and exporting the cleaned data
 dbDisconnect(con)
 
 write_csv(cleaned_data, "data/analysis_data/cleaned_data.csv")

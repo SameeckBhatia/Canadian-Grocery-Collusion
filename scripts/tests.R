@@ -9,9 +9,10 @@
 #   - The `testthat` packages must be installed and loaded
 # Any other information needed? None
 
-# Load necessary library
+# Load required libraries
 library(testthat)
 
+# Importing the simulated data
 simulated_data <- read_csv("data/simulated_data/simulated_data.csv")
 
 # Test 1: Date Range

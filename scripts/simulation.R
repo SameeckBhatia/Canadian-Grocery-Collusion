@@ -8,14 +8,15 @@
 #   - The `tidyverse` package must be installed and loaded
 # Any other information needed? None
 
-### Workspace Setup ###
+# Importing required libraries
 library(tidyverse)
 
-### Simulation  ###
+# Setting a seed for reproducibility
 set.seed(12)
 
 n <- 100
 
+# Defining vectors
 date <- sample(seq(as.Date("2024-01-01"), as.Date("2024-11-13"), 1), n, replace = TRUE)
 vendor <- sample(c("Loblaws", "Walmart", "T&T", "Sobeys"), n, replace = TRUE)
 product <- sample(c("Apple", "Watermelon", "Celery", "Tomato"))
@@ -23,6 +24,7 @@ current_price <-  3 + abs(round(rnorm(n, 0, 2), 1)) - 0.01
 previous_price <- 3 + abs(round(rnorm(n, 0, 2), 1)) - 0.01
 transaction_type <- sample(c("Sale", "Promotion", "Rewards Points"), n, replace = TRUE)
 
+# Creating the simulated dataset
 simulated_data <- data.frame(
   date = date,
   vendor = vendor,
@@ -32,5 +34,5 @@ simulated_data <- data.frame(
   transaction_type = transaction_type
 )
 
-### Exporting Data  ###
+# Exporting the data
 write_csv(simulated_data, "data/simulated_data/simulated_data.csv")
