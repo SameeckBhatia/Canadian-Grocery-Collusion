@@ -1,0 +1,54 @@
+---
+title: "Canadian Grocery Collusion"
+subtitle: "Some Subtitle"
+author:
+  - Sameeck Bhatia
+  - Sean Chua
+  - Cristina Su Lam
+  - Mariko Lee
+  - Karen Riani
+thanks: "Code and data are available at: [https://github.com/SameeckBhatia/Canadian-Grocery-Collusion](https://github.com/SameeckBhatia/Canadian-Grocery-Collusion)."
+date: today
+date-format: long
+abstract: "Line 1. Line 2. Line 3. Line 4"
+format: pdf
+toc: true
+number-sections: true
+header-includes:
+- \usepackage{pdfpages}
+bibliography: references.bib
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+```
+
+# Introduction
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum at velit at bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus a fermentum est, in tempus risus. Donec eu risus massa. Phasellus sollicitudin lorem id consequat tincidunt. Pellentesque id quam a sapien convallis commodo. Pellentesque vitae velit eu nisi dictum tempor ac consectetur lorem. Integer laoreet bibendum rutrum. Vestibulum sed nulla ut sapien dapibus venenatis. Praesent eget porttitor sapien, vel bibendum nisl. Suspendisse tempus arcu sed enim varius porttitor. Duis rutrum ipsum eget eros aliquam, vel facilisis arcu pulvinar. Aenean semper ante magna, eleifend maximus massa tempor vitae. Etiam imperdiet arcu sed mauris consequat ullamcorper. Phasellus id risus auctor eros iaculis maximus at sed lacus. Aenean orci nulla, dictum sagittis odio sit amet, viverra laoreet elit. Nam accumsan metus eget dolor fringilla porttitor. Etiam consequat blandit erat sed luctus. Sed eget quam erat. Aenean et purus non lacus egestas egestas. Ut et nibh at sem tempus dignissim. In eget placerat ipsum. Ut nec tellus metus. In hac habitasse platea dictumst. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec rhoncus, arcu in pretium tempus, sapien ante congue urna, ut varius libero velit.
+
+# Data {#sec-data}
+
+## Overview
+
+Lorem ipsum dolor sit amet, [@Hammer] consectetur adipiscing elit. Pellentesque condimentum at velit at bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus a fermentum est, in tempus risus [@SQLite]. Donec eu risus massa. Phasellus sollicitudin lorem id consequat tincidunt. Pellentesque id quam a sapien convallis commodo. Pellentesque vitae velit eu nisi dictum tempor ac consectetur lorem. Integer laoreet bibendum rutrum. Vestibulum sed nulla ut sapien dapibus venenatis. Praesent eget porttitor sapien, vel bibendum nisl [@citeR]. Suspendisse tempus arcu sed enim varius porttitor. Duis rutrum ipsum eget eros aliquam, vel facilisis arcu pulvinar. 
+
+# Measurement
+
+Aenean semper ante magna, eleifend maximus massa tempor vitae. Etiam imperdiet arcu sed mauris consequat ullamcorper. Phasellus id risus auctor eros iaculis maximus at sed lacus. Aenean orci nulla, dictum sagittis odio sit amet, viverra laoreet elit. Nam accumsan metus eget dolor fringilla porttitor. Etiam consequat blandit erat sed luctus. Sed eget quam erat. Aenean et purus non lacus egestas egestas. Ut et nibh at sem tempus dignissim. In eget placerat ipsum. Ut nec tellus metus. In hac habitasse platea dictumst. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec rhoncus, arcu in pretium tempus, sapien ante congue urna, ut varius libero velit.
+
+# Outcome Variables
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum at velit at bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus a fermentum est, in tempus risus. Donec eu risus massa. Phasellus sollicitudin lorem id consequat tincidunt. Pellentesque id quam a sapien convallis commodo. Pellentesque vitae velit eu nisi dictum tempor ac consectetur lorem. Integer laoreet bibendum rutrum.
+
+# Predictor Variables
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque condimentum at velit at bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus a fermentum est, in tempus risus. Donec eu risus massa. Phasellus sollicitudin lorem id consequat tincidunt. Pellentesque id quam a sapien convallis commodo. Pellentesque vitae velit eu nisi dictum tempor ac consectetur lorem. Integer laoreet bibendum rutrum.
+
+\newpage
+
+# References
